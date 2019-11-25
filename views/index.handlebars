@@ -16,14 +16,14 @@
 <div class="container-fluid px-0">
     <img class="header-image" src="/images/latest-news.jpg" alt="News Header Image">
 </div>
-<div class="container-fluid" id="news-article-contents">
+<div class="container-fluid px-0" id="news-article-contents">
     {{#unless articles}}
     <div>
         <h1>NO DATA HERE SORRY</h1>
     </div>
     {{/unless}}
     {{#each articles}}
-    <div class="card" style="width: 18rem;">
+    <div class="card m-4">
         <div class="card-header">
             {{title}}
         </div>
