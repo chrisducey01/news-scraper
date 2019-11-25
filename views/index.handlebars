@@ -1,1 +1,36 @@
-<h1>{{msg}}</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-0">
+    <a class="navbar-brand px-3" href="#">Mongo News Scraper</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <button type="button" id="get-news-btn" class="btn btn-primary">Get News</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid px-0">
+    <img class="header-image" src="/images/latest-news.jpg" alt="News Header Image">
+</div>
+<div class="container-fluid" id="news-article-contents">
+    {{#unless articles}}
+    <div>
+        <h1>NO DATA HERE SORRY</h1>
+    </div>
+    {{/unless}}
+    {{#each articles}}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            {{title}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{teaser}}</li>
+            <li class="list-group-item">{{link}}</li>
+        </ul>
+    </div>
+    {{/each}}
+</div>
