@@ -11,6 +11,10 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+mongoose.connection.on('error', err => {
+    console.log(err);
+  });
+
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

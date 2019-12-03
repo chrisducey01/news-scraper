@@ -14,19 +14,32 @@ var ArticleSchema = new Schema({
   // `link` is required and of type String
   link: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   // `teaser is not required and of type String
   teaser: {
     type: String,
     required: false
   },
-  // `note` is an object that stores a Note id
+  // `notes` is an array of objects that stores Note id's
   // The ref property links the ObjectId to the Note model
-  // This allows us to populate the Article with an associated Note
-  note: {
-    type: Schema.Types.ObjectId,
-    ref: "Note"
+  // This allows us to populate the Article with a associated Notes
+  notes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Note"
+    }
+  ],
+  createdAt: {
+    type: Date,
+    required: true,
+    default: Date.now
+  },
+  modifiedAt: {
+    type: Date,
+    required: true,
+    default: Date.now
   }
 });
 

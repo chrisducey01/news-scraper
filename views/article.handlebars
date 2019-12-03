@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="card my-4">
+        <div class="card-header">
+            {{article.title}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{article.teaser}}</li>
+            <li class="list-group-item">
+                <a href="{{article.link}}">Read on NPR</a>
+            </li>
+        </ul>
+    </div>
+    <form id="article" data-article-id="{{article._id}}">
+        <div class="form-group">
+            <label for="newNoteTitle">Title</label>
+            <input type="input" class="form-control" id="newNoteTitle" name="newNoteTitle" required>
+        </div>
+        <div class="form-group">
+            <label for="newNoteBody">Comment</label>
+            <textarea class="form-control" rows="5" id="newNoteBody" name="newNoteBody" required></textarea>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit" id="newCommentSubmitBtn">
+    </form>
+    {{#each article.notes}}
+    <h1>{{title}}</h1>
+    <h3>{{body}}</h3>
+    <h5>{{createdAt}}</h5>
+    {{/each}}
+</div>

@@ -1,3 +1,15 @@
 .header-image{
     width:100%;
 }
+
+.notes{
+    font-family: 'Poppins', sans-serif;
+}
+
+.notes:hover{
+    color: darkorange;
+}
+
+textarea{
+    white-space: pre-wrap;
+}
