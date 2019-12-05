@@ -31,6 +31,10 @@ var ArticleSchema = new Schema({
       ref: "Note"
     }
   ],
+  saved: {
+    type: Boolean,
+    default: false
+  },
   createdAt: {
     type: Date,
     required: true,
