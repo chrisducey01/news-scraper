@@ -7,8 +7,14 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <button type="button" id="get-news-btn" class="btn btn-primary">Get News</button>
+            </li>
+            <li class="nav-item px-3">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="saved-switch" {{#if savedSwitch}}checked{{/if}}>
+                    <label class="custom-control-label" for="saved-switch">Saved</label>
+                </div>
             </li>
         </ul>
     </div>
@@ -20,7 +26,7 @@
     {{#unless articles}}
     <div class="card m-4">
         <div class="card-header">
-            No Articles Currently Loaded.  Click on Get News to Grab New Articles.
+            No Articles Currently Loaded. Click on Get News to Grab New Articles.
         </div>
     </div>
     {{/unless}}
@@ -32,8 +38,14 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">{{teaser}}</li>
             <li class="list-group-item">
-                <a href="{{link}}">Read on NPR</a>
+                <a href="{{link}}">Read Full Article</a>
                 <i class="far fa-comment-dots px-3 notes" data-article-id="{{_id}}"> {{notes.length}} </i>
+                {{#if saved}}
+                <i class="fas fa-bookmark save" data-article-id="{{_id}}" data-state="saved"></i>
+                {{else}}
+                <i class="far fa-bookmark save" data-article-id="{{_id}}" data-state="unsaved"></i>
+                {{/if}}
+
             </li>
         </ul>
     </div>

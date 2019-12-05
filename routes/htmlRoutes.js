@@ -10,7 +10,27 @@ module.exports = function (app) {
                 res.render("index",
                     {
                         js_file: "index.js",
-                        articles: dbArticles
+                        articles: dbArticles,
+                        savedSwitch: false
+                    }
+                )
+            })
+            .catch(function (err) {
+                // If an error occurred, send it to the client
+                res.json(err);
+            });
+    });
+
+    // Only load saved articles
+    app.get("/saved", function (req, res) {
+        db.Article.find({saved: true})
+            .then(function (dbArticles) {
+                // If we were able to successfully find Articles, render the index page
+                res.render("index",
+                    {
+                        js_file: "index.js",
+                        articles: dbArticles,
+                        savedSwitch: true
                     }
                 )
             })
@@ -21,12 +41,12 @@ module.exports = function (app) {
     });
 
     //display article and any associated notes
-    app.get("/article/:id", function(req,res){
-        db.Article.findById({_id: mongoose.Types.ObjectId(req.params.id)}).populate("notes").then(data=>{
-            res.render("article",{article: data, js_file:"article.js"});
-          }).catch(err=>{
+    app.get("/article/:id", function (req, res) {
+        db.Article.findById({ _id: mongoose.Types.ObjectId(req.params.id) }).populate("notes").then(data => {
+            res.render("article", { article: data, js_file: "article.js" });
+        }).catch(err => {
             res.status(500).json(err);
-          });
+        });
     });
 
     // Render 404 page for any unmatched routes

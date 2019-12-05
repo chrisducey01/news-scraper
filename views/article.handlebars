@@ -1,15 +1,16 @@
-<div class="container">
+<div class="container-fluid">
     <div class="card my-4">
-        <div class="card-header">
+        <div class="card-header font-weight-bold">
             {{article.title}}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">{{article.teaser}}</li>
             <li class="list-group-item">
-                <a href="{{article.link}}">Read on NPR</a>
+                <a href="{{article.link}}">Read Full Article</a>
             </li>
         </ul>
     </div>
+    <h1 class="mt-4 text-center">Add a Comment</h1>
     <form id="article" data-article-id="{{article._id}}">
         <div class="form-group">
             <label for="newNoteTitle">Title</label>
@@ -21,9 +22,15 @@
         </div>
         <input class="btn btn-primary" type="submit" value="Submit" id="newCommentSubmitBtn">
     </form>
+    <h1 class="mt-4 text-center">Comments</h1>
     {{#each article.notes}}
-    <h1>{{title}}</h1>
-    <h3>{{body}}</h3>
-    <h5>{{createdAt}}</h5>
+        <div class="card my-4">
+        <div class="card-header font-weight-bold">
+            {{title}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{body}}</li>
+        </ul>
+    </div>
     {{/each}}
 </div>

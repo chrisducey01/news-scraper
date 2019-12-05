@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.notes:hover{
+.notes:hover, .save:hover{
     color: darkorange;
 }
 
