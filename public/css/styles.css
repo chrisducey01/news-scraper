@@ -13,3 +13,7 @@
 textarea{
     white-space: pre-wrap;
 }
+
+label[for="saved-switch"]{
+    color: white;
+}

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light px-0">
-    <a class="navbar-brand px-3" href="#">Mongo News Scraper</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0">
+    <a class="navbar-brand px-3" href="/">Mongo News Scraper</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <button type="button" id="get-news-btn" class="btn btn-primary">Get News</button>
+                <button type="button" id="get-news-btn" class="btn btn-primary">Get New Articles</button>
             </li>
             <li class="nav-item px-3">
-                <div class="custom-control custom-switch">
+                <div class="custom-control custom-switch h-100">
                     <input type="checkbox" class="custom-control-input" id="saved-switch" {{#if savedSwitch}}checked{{/if}}>
                     <label class="custom-control-label" for="saved-switch">Saved</label>
                 </div>
@@ -25,14 +25,14 @@
 <div class="container-fluid px-0" id="news-article-contents">
     {{#unless articles}}
     <div class="card m-4">
-        <div class="card-header">
-            No Articles Currently Loaded. Click on Get News to Grab New Articles.
+        <div class="card-header text-center font-weight-bold">
+            No Articles Currently Loaded. Click on the Get New Articles Button to Grab Any New Articles.
         </div>
     </div>
     {{/unless}}
     {{#each articles}}
     <div class="card m-4">
-        <div class="card-header">
+        <div class="card-header font-weight-bold">
             {{title}}
         </div>
         <ul class="list-group list-group-flush">
