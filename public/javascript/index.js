@@ -36,11 +36,4 @@ $(document).ready(function(){
             }
         })
     });
-
-    $(document).on("click","#saved-switch",function(){
-        if($(this)[0].checked)
-            location.href = "/saved";
-        else
-            location.href = "/";
-    });
 });

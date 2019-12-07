@@ -2,7 +2,7 @@ $(document).ready(function(){
     $("form").on("submit", function (event) {
         event.preventDefault();
 
-        let articleId = $(this).data("article-id");
+        let articleId = $("#article").data("article-id");
         let noteData = {
             title : $("#newNoteTitle").val().trim(),
             body: $("#newNoteBody").val()
@@ -12,6 +12,9 @@ $(document).ready(function(){
         $.post(`/api/article/${articleId}`, noteData).then(res=>{
             $("#newNoteTitle").val("");
             $("#newNoteBody").val("");
+            $("form").removeClass("was-validated");
+            let form = $("#article")[0];
+            form.reset();
             location.reload();
         });
     });
