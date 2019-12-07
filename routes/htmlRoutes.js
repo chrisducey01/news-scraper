@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 module.exports = function (app) {
     // Load index page
     app.get("/", function (req, res) {
-        db.Article.find({})
+        db.Article.find({},null,{$sort: {createdAt: 1}})
             .then(function (dbArticles) {
                 // If we were able to successfully find Articles, render the index page
                 res.render("index",

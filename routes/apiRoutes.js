@@ -37,10 +37,10 @@ module.exports = function (app) {
     });
 
     // Get all articles
-    app.get("/api/articles", function(req, res){
+    app.get("/api/articles", function (req, res) {
         db.Article.find({}).populate("notes").then(data => {
             res.json(data);
-        }).catch(err=>{
+        }).catch(err => {
             res.status(500).json(err);
         });
     });
@@ -63,7 +63,7 @@ module.exports = function (app) {
     // Insert new comment into Notes collection and associate it with an Article document by ID
     app.post("/api/article/:id", function (req, res) {
         db.Article.findById(mongoose.Types.ObjectId(req.params.id)).then(dbArticleRes => {
-            if(!dbArticleRes){
+            if (!dbArticleRes) {
                 return res.status(404).json({
                     "message": "Article not found",
                     "articleId": req.params.id,
@@ -86,7 +86,7 @@ module.exports = function (app) {
                 return res.status(500).json(err);
             })
 
-        }).catch(err=>{
+        }).catch(err => {
             res.status(500).json(err);
         });
     });
@@ -118,4 +118,40 @@ module.exports = function (app) {
         });
     });
 
+    // Delete a comment (aka Note) and remove the reference to its id from the Article collection's document
+    app.delete("/api/comment/:id", function (req, res) {
+        const articleId = req.body.articleId;
+        const commentId = req.params.id;
+
+        // First remove the full comment from the Note collection
+        db.Note.remove({ _id: mongoose.Types.ObjectId(commentId) })
+            .then(dbRes => { 
+                // Then remove it's object id reference from the document in the Article collection
+                // Search by article id, then remove the note object id from the array
+                db.Article.findById(articleId)
+                .then(dbRes=>{
+                    let notesArr = dbRes.notes;
+                    notesArr = notesArr.filter(note=>{
+                        note._id !== commentId
+                    });
+                    db.Article.update({_id: mongoose.Types.ObjectId(articleId)},{$set:{notes: notesArr}})
+                    .then(dbRes=>{
+                        res.json({
+                            "message": "Comment deleted from article",
+                            "commentId": commentId,
+                            "articleId": articleId
+                        })
+                    })
+                    .catch(err=>{
+                        res.status(500).json(err);
+                    })
+                })
+                .catch(err=>{
+                    res.status(500).json(err)
+                })
+            })
+            .catch(err => { 
+                res.status(500).json(err);
+            });
+    });
 };

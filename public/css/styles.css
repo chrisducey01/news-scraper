@@ -17,3 +17,8 @@ textarea{
 label[for="saved-switch"]{
     color: white;
 }
+
+.fa-trash:hover{
+    color:red;
+    cursor: pointer;
+}

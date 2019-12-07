@@ -15,4 +15,16 @@ $(document).ready(function(){
             location.reload();
         });
     });
+
+    $(document).on("click",".fa-trash",function(event){
+        const commentId = $(this).data("comment-id");
+        const articleId = $("#article").data("article-id");
+        $.ajax({
+            method: "DELETE",
+            url: `/api/comment/${commentId}`,
+            data: { articleId: articleId }
+        }).then(data=>{
+            location.reload();
+        });
+    });
 });

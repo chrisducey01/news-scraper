@@ -49,7 +49,8 @@
     {{#each article.notes}}
     <div class="card my-4">
         <div class="card-header font-weight-bold">
-            {{title}}
+            <p class="d-inline">{{title}}</p>
+            <i class="fas fa-trash d-inline-flex float-right" data-comment-id="{{_id}}"></i>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">{{body}}</li>
