@@ -7,9 +7,13 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item {{#unless savedSwitch}}active{{/unless}}">
+                <a href="/" class="nav-link pr-3">Home</a>
+            </li>
             <li class="nav-item {{#if savedSwitch}}active{{/if}}">
                 <a href="/saved" class="nav-link pr-3">Saved Articles</a>
             </li>
+
             <li class="nav-item pl-3">
                 <button type="button" id="get-news-btn" class="btn btn-primary">Get New Articles</button>
             </li>
