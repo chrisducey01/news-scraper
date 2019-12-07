@@ -122,7 +122,6 @@ module.exports = function (app) {
     app.delete("/api/comment/:id", function (req, res) {
         const articleId = req.body.articleId;
         const commentId = req.params.id;
-
         // First remove the full comment from the Note collection
         db.Note.remove({ _id: mongoose.Types.ObjectId(commentId) })
             .then(dbRes => { 
@@ -131,9 +130,7 @@ module.exports = function (app) {
                 db.Article.findById(articleId)
                 .then(dbRes=>{
                     let notesArr = dbRes.notes;
-                    notesArr = notesArr.filter(note=>{
-                        note._id !== commentId
-                    });
+                    notesArr = notesArr.filter(note=>note !== commentId);
                     db.Article.update({_id: mongoose.Types.ObjectId(articleId)},{$set:{notes: notesArr}})
                     .then(dbRes=>{
                         res.json({
