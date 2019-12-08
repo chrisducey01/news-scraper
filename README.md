@@ -50,6 +50,7 @@ There is a demo of this app available on Heroku.  You can interact with the app 
 6.  View only the saved articles by clicking on the "Saved Articles" link in the navbar.
 
 [Visit Demo Site](https://stormy-earth-39694.herokuapp.com/)
+
 [View Demo Video](https://drive.google.com/file/d/1fHV7bAC99zAZbsuJTuQsgY8aDrQgtJ3d/view)
 
 ## Authors
