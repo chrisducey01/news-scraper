@@ -4,6 +4,8 @@
   "description": "Scrapes recent news articles, displays content on webpage, and allows users to comment on each article.",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
